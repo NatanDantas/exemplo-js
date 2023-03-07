@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo 02</title>
+  </head>
+  <body>
+    <h1>Exemplo Bloco de informações complexo</h1>
+    <div>
+        <button id="btnMostrarInfo">Mostrar Informações</button>
+    </div>
+    <script>
+      let objproduto = {
+        nome: "Bolo de cenoura",
+        dataValidade: Date.parse("2021-12-31"),
+        preco: 50.0,
+        ingredientes: [
+          "farinha",
+          "ovo",
+          "leite",
+          "cenoura",
+          "açucar",
+          "fermento",
+        ],
+      };
+      let resultado = '<h2>' + objproduto.nome + '</h2>'+
+        '<p>Data Validade: ' + objproduto.dataValidade + '</p>'+
+        '<p>Preço: ' + objproduto.preco + '</p>'+
+        '<p>Ingredientes: ' + objproduto.ingredientes + '</p>';
+        function mostrarInfo() {
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+        document.getElementById("btnMostrarInfo").onclick = mostrarInfo;
+    </script>
+  </body>
+</html>
