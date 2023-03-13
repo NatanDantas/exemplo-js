@@ -17,10 +17,11 @@
       function listar() {
         for (let i = 1; i <= 1000; i++) {
           let ul = document.getElementById("resultado");
-          ul.insertAdjacentElementHTML('beforeend', '<li>Item' + i + '</li>');
+          ul.insertAdjacentHTML('beforeend', "<li>Item " + i + "</li>");
         }
       }
       document.getElementById("btnListar").onclick = listar;
     </script>
   </body>
 </html>
+
