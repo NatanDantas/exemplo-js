@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Exemplo AJAX - Carregar Dados</h1>
-    <button id="btnCarregarDados" >Carregar Dados</button>
+    <button id="btnCarregarDados">Carregar Dados</button>
     <table id="tabela">
       <thead>
         <tr>
@@ -38,6 +38,9 @@
           if (xhr.status == 200) {
             const dados = JSON.parse(xhr.responseText);
 
+            // Obtém a referência do elemento tbody
+            const tbody = document.querySelector("#tabela tbody");
+
             // Insere as linhas com os dados na tabela
             for (let i = 0; i < dados.length; i++) {
               const tr = document.createElement("tr");
@@ -53,8 +56,7 @@
             document.getElementById("nome").innerHTML = dados[0].nome;
             document.getElementById("email").innerHTML = dados[0].email;
             document.getElementById("telefone").innerHTML = dados[0].telefone;
-            document.getElementById("dataNascimento").innerHTML =
-              dados[0].dataNascimento;
+            document.getElementById("dataNascimento").innerHTML = dados[0].dataNascimento;
 
             const ul = document.getElementById("conhecimentos");
             ul.innerHTML = "";
@@ -69,7 +71,9 @@
         };
         xhr.send();
       }
-      document.getElementById("btnCarregarDados").addEventListener("click", carregarDados);
+      document
+        .getElementById("btnCarregarDados")
+        .addEventListener("click", carregarDados);
     </script>
   </body>
 </html>
