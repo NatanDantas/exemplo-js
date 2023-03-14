@@ -1,0 +1,12 @@
+{
+    "nome": "Natan Dantas",
+    "email": "natancdantas@gmail.com",
+    "telefone": "(11) 95927-3277",
+    "dataNascimento": "14/08/2000",
+    "conhecimento":[
+        "Java",
+        "Python",
+        "HTML",
+        "CSS"
+    ]
+}

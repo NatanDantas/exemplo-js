@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>Exemplo Dinâmico</h1>
+    <div id="dados">
+      <h2 id="nome">XXXX</h2>
+      <p>E-mail<span id="email"></span></p>
+      <p>Telefone<span id="telefone"></span></p>
+      <p>Dada de Nascimento:<span id="dataNascimento"></span></p>
+      <p>Conhecimentos:</p>
+      <ul id="conhecimentos"></ul>
+    </div>
+    <script>
+      function mostrarInfo() {
+        const dados = {
+          nome: "Neithan",
+          email: "neithan@gmail.com",
+          telefone: "(11) 99999-9999",
+          dataNascimento: "00/00/0000",
+          conhecimentos: [java, javascript, html, css, sql],
+        };
+        document.getElementById("nome").innerHTML = dados.nome;
+        document.getElementById("email").innerHTML = dados.email;
+        document.getElementById("telefone").innerHTML = dados.telefone;
+        document.getElementById("dataNascimento").innerHTML =
+          dados.dataNascimento;
+        for (let i = 0; i < dados.conhecimentos.length; i++) {
+          let ul = document.getElementById("conhecimentos");
+          ul.insertAdjacentHTML(
+            "beforeend",
+            "<li>" + dados.conhecimentos[i] + "</li>"
+          );
+        }
+      }
+      carregarDados();
+    </script>
+  </body>
+</html>
