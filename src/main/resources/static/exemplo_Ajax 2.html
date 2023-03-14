@@ -7,8 +7,8 @@
   </head>
   <body>
     <h1>Exemplo AJAX - Carregar Dados</h1>
-    <button id="btnCarregarDados">Carregar Dados</button>
-    <table>
+    <button id="btnCarregarDados" >Carregar Dados</button>
+    <table id="tabela">
       <thead>
         <tr>
           <th>Nome</th>
@@ -16,18 +16,8 @@
           <th>Telefone</th>
         </tr>
       </thead>
-      <tbody>
-        
-      </tbody>
+      <tbody></tbody>
     </table>
-    <div id="dados">
-      <h2 id="nome"></h2>
-      <p>E-mail<span id="email"></span></p>
-      <p>Telefone<span id="telefone"></span></p>
-      <p>Dada de Nascimento:<span id="dataNascimento"></span></p>
-      <p>Conhecimentos:</p>
-      <ul id="conhecimentos"></ul>
-    </div>
     <script>
       function montarHTML(dados) {
         let html = "";
@@ -40,24 +30,38 @@
         }
         return html;
       }
+
       function carregarDados() {
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "dados_pessoais.json", true);
         xhr.onload = function () {
           if (xhr.status == 200) {
             const dados = JSON.parse(xhr.responseText);
-            document.getElementById("nome").innerHTML = dados.nome;
-            document.getElementById("email").innerHTML = dados.email;
-            document.getElementById("telefone").innerHTML = dados.telefone;
-            document.getElementById("dataNascimento").innerHTML =
-              dados.dataNascimento;
 
-            for (let i = 0; i < dados.conhecimentos.length; i++) {
-              let ul = document.getElementById("conhecimentos");
-              ul.insertAdjacentHTML(
-                "beforeend",
-                "<li>" + dados.conhecimentos[i] + "</li>"
-              );
+            // Insere as linhas com os dados na tabela
+            for (let i = 0; i < dados.length; i++) {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td>${dados[i].nome}</td>
+                <td>${dados[i].email}</td>
+                <td>${dados[i].telefone}</td>
+              `;
+              tbody.appendChild(tr);
+            }
+
+            // Insere os dados detalhados abaixo da tabela
+            document.getElementById("nome").innerHTML = dados[0].nome;
+            document.getElementById("email").innerHTML = dados[0].email;
+            document.getElementById("telefone").innerHTML = dados[0].telefone;
+            document.getElementById("dataNascimento").innerHTML =
+              dados[0].dataNascimento;
+
+            const ul = document.getElementById("conhecimentos");
+            ul.innerHTML = "";
+            for (let i = 0; i < dados[0].conhecimentos.length; i++) {
+              const li = document.createElement("li");
+              li.innerText = dados[0].conhecimentos[i];
+              ul.appendChild(li);
             }
           } else {
             console.log("Erro: " + xhr.status);
@@ -65,6 +69,7 @@
         };
         xhr.send();
       }
+      document.getElementById("btnCarregarDados").addEventListener("click", carregarDados);
     </script>
   </body>
 </html>
